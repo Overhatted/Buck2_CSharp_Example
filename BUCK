@@ -22,3 +22,23 @@ csharp_binary(
     framework_ver = "net46",
     add_hermetic_arguments = False,
 )
+
+cxx_binary(
+    name = "main_generator",
+    srcs = ["main_generator.cpp"],
+    compiler_flags = ["/std:c++17"],
+)
+
+genrule(
+    name = "generate_code",
+    cmd_exe = "$(location :main_generator) ${OUT}",
+    out = "include",
+)
+
+cxx_binary(
+    name = "main_generator_user",
+    srcs = ["main_generator_user.cpp"],
+    headers = [
+        ":generate_code",
+    ],
+)
