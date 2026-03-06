@@ -3,6 +3,9 @@
 #include <iostream>
 #include <fstream>
 #include <filesystem>
+#include <string>
+
+#include "library.h"
  
 int main(int argc, char *argv[])
 {
@@ -14,7 +17,7 @@ int main(int argc, char *argv[])
 	std::ofstream MyFile(outputFile);
 
 	// Write to the file
-	MyFile << "using test_type = int;";
+	MyFile << "using test_type = int;int numberInGeneratedFile = " + std::to_string(GetNumber()) + ";";
 
 	// Close the file
 	MyFile.close();

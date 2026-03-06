@@ -23,10 +23,17 @@ csharp_binary(
     add_hermetic_arguments = False,
 )
 
+cxx_library(
+    name = "cxx_library",
+    srcs = ["library.cpp"],
+)
+
 cxx_binary(
     name = "main_generator",
     srcs = ["main_generator.cpp"],
     compiler_flags = ["/std:c++17"],
+    deps = [":cxx_library"],
+    link_style = "shared",
 )
 
 genrule(
