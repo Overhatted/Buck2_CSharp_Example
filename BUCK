@@ -15,7 +15,7 @@ prebuilt_dotnet_library(
 
 csharp_binary(
     name = "main",
-    srcs = ["main.cs"],
+    srcs = ["main.cs"] + glob(["generated_sources_with_a_deliberately_long_directory_name/**/*.cs"]),
     deps = [
         ":newtonsoft_json",
     ],
